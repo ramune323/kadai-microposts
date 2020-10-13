@@ -1,0 +1,41 @@
+<div class="text-center">
+  <h1>Sign up</h1>
+</div>
+
+<!-- ユーザ登録フォーム -->
+<div class="row">
+  <div class="col-sm-6 offset-sm-3">
+    
+    <%= form_with(model: @user, local: true) do |f| %>
+      <!-- ユーザ登録に失敗した場合、エラーメッセージ表示 -->
+      <%= render 'layouts/error_messages', model: f.object %>
+    
+      <!-- ユーザ名 -->
+      <div class="form-group">
+        <%= f.label :name, 'Name' %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      
+      <!-- メールアドレス -->
+      <div class="form-group">
+        <%= f.label :email, 'Email' %>
+        <%= f.email_field :email, class: 'form-control' %>
+      </div>
+      
+      <!-- パスワード -->
+      <div class="form-group">
+        <%= f.label :password, 'Password' %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+      
+      <!-- パスワード確認 -->
+      <div class="form-group">
+        <%= f.label :password_confirmation, 'Confirmation' %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+      </div>
+      
+      <!-- サインインボタン -->
+      <%= f.submit 'Sign up', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+</div>
