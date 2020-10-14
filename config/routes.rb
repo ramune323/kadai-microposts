@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   
   # 必要なアクションのみ指定
   resources :users, only: [:index, :show, :new, :create]
+  
+  # 投稿機能（新規投稿、削除）
+  resources :microposts, only: [:create, :destroy]
 end

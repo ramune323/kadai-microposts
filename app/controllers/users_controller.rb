@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   # ユーザ詳細ページ表示
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.order(id: :desc).page(params[:page])
+    counts(@user)
   end
 
   # ユーザ新規作成

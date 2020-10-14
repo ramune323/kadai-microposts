@@ -15,4 +15,7 @@ class User < ApplicationRecord
   
   # 暗号化のための機能
   has_secure_password
+  
+  # User と Micropost の一対多を表現
+  has_many :microposts
 end
