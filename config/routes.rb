@@ -7,6 +7,13 @@ Rails.application.routes.draw do
   # ユーザ情報を新規作成
   # ユーザの新規登録URLを /signup に個別設定
   get 'signup', to: 'users#new'
+  
+  # ログイン処理
+  # 各ページのURLを個別指定
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
+  
   # 必要なアクションのみ指定
   resources :users, only: [:index, :show, :new, :create]
 end
