@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show]
+  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers]
   
   # ユーザ一覧を取得（id降順）　ページネーション適用　1ページに25件表示
   def index
@@ -31,6 +31,20 @@ class UsersController < ApplicationController
       flash[:danger] = 'ユーザの登録に失敗しました。'
       render :new
     end
+  end
+  
+  # フォロー一覧表示
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.followings.page(params[:page])
+    counts(@user)
+  end
+  
+  # フォロワー一覧表示
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.followers.page(params[:page])
+    counts(@user)
   end
 end
 
