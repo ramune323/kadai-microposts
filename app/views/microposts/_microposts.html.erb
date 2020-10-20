@@ -9,10 +9,13 @@
         <div>
           <p class="mb-0"><%= micropost.content %></p>
         </div>
-        <div>
+        <div class="form-inline">
           <% if current_user == micropost.user %>
+          <div style="margin-right: 10px">
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+          </div>
           <% end %>
+          <%= render 'favorites/favorite_button', favorite_micropost: micropost %>
         </div>
       </div>
     </li>

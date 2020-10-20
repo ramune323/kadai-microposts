@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers]
+  before_action :require_user_logged_in, only: [:index, :show, :followings, :followers, :likes]
   
   # ユーザ一覧を取得（id降順）　ページネーション適用　1ページに25件表示
   def index
@@ -44,6 +44,13 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page])
+    counts(@user)
+  end
+  
+  # お気に入り一覧表示
+  def likes
+    @user = User.find(params[:id])
+    @favorites = @user.favorite_microposts.order(id: :desc).page(params[:page])
     counts(@user)
   end
 end

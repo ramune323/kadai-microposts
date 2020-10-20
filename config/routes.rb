@@ -15,10 +15,11 @@ Rails.application.routes.draw do
   get 'signup', to: 'users#new'
   # 必要なアクションのみ指定
   resources :users, only: [:index, :show, :new, :create] do
-    # URLを作成するだけ
+    # URLを生成する
     member do
       get :followings
       get :followers
+      get :likes
     end
   end
   
@@ -26,4 +27,6 @@ Rails.application.routes.draw do
   resources :microposts, only: [:create, :destroy]
   # フォロー／アンフォロー
   resources :relationships, only: [:create, :destroy]
+  # お気に入り追加／削除
+  resources :favorites, only: [:index, :create, :destroy]
 end
